@@ -182,11 +182,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Flan\\source\\repos\\Starstorm.Executioner\\Starstorm.Executioner\\Starstorm.Executioner.csproj",
+      "projectUniqueName": "E:\\Src\\Executioner\\Starstorm.Executioner\\Starstorm.Executioner\\Starstorm.Executioner.csproj",
       "projectName": "Starstorm.Executioner",
-      "projectPath": "C:\\Users\\Flan\\source\\repos\\Starstorm.Executioner\\Starstorm.Executioner\\Starstorm.Executioner.csproj",
+      "projectPath": "E:\\Src\\Executioner\\Starstorm.Executioner\\Starstorm.Executioner\\Starstorm.Executioner.csproj",
       "packagesPath": "C:\\Users\\Flan\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Flan\\source\\repos\\Starstorm.Executioner\\Starstorm.Executioner\\obj\\",
+      "outputPath": "E:\\Src\\Executioner\\Starstorm.Executioner\\Starstorm.Executioner\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

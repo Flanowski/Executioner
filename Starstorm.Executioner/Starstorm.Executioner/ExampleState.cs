@@ -32,7 +32,7 @@ namespace Executioner
                     procCoefficient = 1f,
                     damage = base.characterBody.damage,
                     force = 3,
-                    falloffModel = BulletAttack.FalloffModel.DefaultBullet,
+                    falloffModel = BulletAttack.FalloffModel.None,
                     tracerEffectPrefab = this.tracerEffectPrefab,
                     hitEffectPrefab = this.hitEffectPrefab,
                     isCrit = base.RollCrit(),
