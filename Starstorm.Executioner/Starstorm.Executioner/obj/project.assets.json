@@ -176,23 +176,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Flan\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\g_bur\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\Src\\Executioner\\Starstorm.Executioner\\Starstorm.Executioner\\Starstorm.Executioner.csproj",
+      "projectUniqueName": "C:\\Users\\g_bur\\source\\repos\\Executioner\\Starstorm.Executioner\\Starstorm.Executioner\\Starstorm.Executioner.csproj",
       "projectName": "Starstorm.Executioner",
-      "projectPath": "E:\\Src\\Executioner\\Starstorm.Executioner\\Starstorm.Executioner\\Starstorm.Executioner.csproj",
-      "packagesPath": "C:\\Users\\Flan\\.nuget\\packages\\",
-      "outputPath": "E:\\Src\\Executioner\\Starstorm.Executioner\\Starstorm.Executioner\\obj\\",
+      "projectPath": "C:\\Users\\g_bur\\source\\repos\\Executioner\\Starstorm.Executioner\\Starstorm.Executioner\\Starstorm.Executioner.csproj",
+      "packagesPath": "C:\\Users\\g_bur\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\g_bur\\source\\repos\\Executioner\\Starstorm.Executioner\\Starstorm.Executioner\\obj\\",
       "projectStyle": "PackageReference",
-      "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-      ],
       "configFilePaths": [
-        "C:\\Users\\Flan\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\g_bur\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -224,10 +220,16 @@
           }
         },
         "imports": [
-          "net461"
+          "net461",
+          "net462",
+          "net47",
+          "net471",
+          "net472",
+          "net48"
         ],
         "assetTargetFallback": true,
-        "warn": true
+        "warn": true,
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.1.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

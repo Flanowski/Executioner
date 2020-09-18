@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "Yj0rMJ38vQe82/j7aihZYfUx0dSGH+f6ab9Ih1UoYYAEbbThKoUpSUfl0nLjPqBQwKMAD75O2STJTj73n3UoLQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\g_bur\\source\\repos\\Executioner\\Starstorm.Executioner\\Starstorm.Executioner\\Starstorm.Executioner.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\g_bur\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\g_bur\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
