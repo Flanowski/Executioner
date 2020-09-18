@@ -90,16 +90,21 @@ namespace Executioner
             {
                 DestroyImmediate(obj);
             }
-            
-            PrimarySetup();
+
+            SkillLocator skillLocator = characterPrefab.GetComponent<SkillLocator>();
+            skillLocator.passiveSkill.enabled = false;
+
+            PrimarySetup(skillLocator);
+            SecondarySetup(skillLocator);
+            UtilitySetup(skillLocator);
+            SpecialSetup(skillLocator);
         }
 
-        private void PrimarySetup()
+        private void PrimarySetup(SkillLocator skillLocator)
         {
-            SkillLocator component = characterPrefab.GetComponent<SkillLocator>();
 
-            LanguageAPI.Add("EXECUTIONER_SKILLSLOT_SKILLNAME_NAME", "Service Pistol");
-            LanguageAPI.Add("EXECUTIONER_SKILLSLOT_SKILLNAME_DESCRIPTION", "Fire your pistol for 90% damage.");
+            LanguageAPI.Add("EXECUTIONER_PRIMARY_SKILLNAME_NAME", "Service Pistol");
+            LanguageAPI.Add("EXECUTIONER_PRIMARY_SKILLNAME_DESCRIPTION", "Fire your pistol for 90% damage.");
 
             var mySkillDef = ScriptableObject.CreateInstance<SkillDef>();
             mySkillDef.activationState = new SerializableEntityStateType(typeof(ExampleState));
@@ -119,21 +124,160 @@ namespace Executioner
             mySkillDef.shootDelay = 0f;
             mySkillDef.stockToConsume = 1;
             mySkillDef.icon = Resources.Load<Sprite>("");
-            mySkillDef.skillDescriptionToken = "EXECUTIONER_SKILLSLOT_SKILLNAME_DESCRIPTION";
-            mySkillDef.skillName = "EXECUTIONER_SKILLSLOT_SKILLNAME_NAME";
-            mySkillDef.skillNameToken = "EXECUTIONER_SKILLSLOT_SKILLNAME_NAME";
+            mySkillDef.skillDescriptionToken = "EXECUTIONER_PRIMARY_SKILLNAME_DESCRIPTION";
+            mySkillDef.skillName = "EXECUTIONER_PRIMARY_SKILLNAME_NAME";
+            mySkillDef.skillNameToken = "EXECUTIONER_PRIMARY_SKILLNAME_NAME";
 
             LoadoutAPI.AddSkillDef(mySkillDef);
-           
-            component.primary = characterPrefab.AddComponent<GenericSkill>();
+
+            skillLocator.primary = characterPrefab.AddComponent<GenericSkill>();
+
             SkillFamily newFamily = ScriptableObject.CreateInstance<SkillFamily>();
             newFamily.variants = new SkillFamily.Variant[1];
             LoadoutAPI.AddSkillFamily(newFamily);
-            component.primary.SetFieldValue("_skillFamily", newFamily);
-            SkillFamily skillFamily = component.primary.skillFamily;
 
+            skillLocator.primary.SetFieldValue("_skillFamily", newFamily);
+            SkillFamily skillFamilyVariants = skillLocator.primary.skillFamily;
 
-            skillFamily.variants[0] = new SkillFamily.Variant
+            skillFamilyVariants.variants[0] = new SkillFamily.Variant
+            {
+                skillDef = mySkillDef,
+                unlockableName = "",
+                viewableNode = new ViewablesCatalog.Node(mySkillDef.skillNameToken, false, null)
+            };
+        }
+
+        private void SecondarySetup(SkillLocator skillLocator)
+        {
+            LanguageAPI.Add("EXECUTIONER_SECONDARY_SKILLNAME_NAME", "Ion Burst");
+            LanguageAPI.Add("EXECUTIONER_SECONDARY_SKILLNAME_DESCRIPTION", "Unload bullets that do 300% damage, bullet count increases with kills.");
+
+            var mySkillDef = ScriptableObject.CreateInstance<SkillDef>();
+            mySkillDef.activationState = new SerializableEntityStateType(typeof(ExampleState));
+            mySkillDef.activationStateMachineName = "Weapon";
+            mySkillDef.baseMaxStock = 10;
+            mySkillDef.baseRechargeInterval = 0f;
+            mySkillDef.beginSkillCooldownOnSkillEnd = false;
+            mySkillDef.canceledFromSprinting = false;
+            mySkillDef.fullRestockOnAssign = true;
+            mySkillDef.interruptPriority = InterruptPriority.Any;
+            mySkillDef.isBullets = false;
+            mySkillDef.isCombatSkill = true;
+            mySkillDef.mustKeyPress = false;
+            mySkillDef.noSprint = true;
+            mySkillDef.rechargeStock = 0;
+            mySkillDef.requiredStock = 1;
+            mySkillDef.shootDelay = 0f;
+            mySkillDef.stockToConsume = 1;
+            mySkillDef.icon = Resources.Load<Sprite>("");
+            mySkillDef.skillDescriptionToken = "EXECUTIONER_SECONDARY_SKILLNAME_DESCRIPTION";
+            mySkillDef.skillName = "EXECUTIONER_SECONDARY_SKILLNAME_NAME";
+            mySkillDef.skillNameToken = "EXECUTIONER_SECONDARY_SKILLNAME_NAME";
+
+            LoadoutAPI.AddSkillDef(mySkillDef);
+
+            skillLocator.secondary = characterPrefab.AddComponent<GenericSkill>();
+
+            SkillFamily newFamily = ScriptableObject.CreateInstance<SkillFamily>();
+            newFamily.variants = new SkillFamily.Variant[1];
+            LoadoutAPI.AddSkillFamily(newFamily);
+
+            skillLocator.secondary.SetFieldValue("_skillFamily", newFamily);
+            SkillFamily skillFamilyVariants = skillLocator.secondary.skillFamily;
+
+            skillFamilyVariants.variants[0] = new SkillFamily.Variant
+            {
+                skillDef = mySkillDef,
+                unlockableName = "",
+                viewableNode = new ViewablesCatalog.Node(mySkillDef.skillNameToken, false, null)
+            };
+        }
+
+        private void UtilitySetup(SkillLocator skillLocator)
+        {
+            LanguageAPI.Add("EXECUTIONER_UTILITY_SKILLNAME_NAME", "Crowd Dispersion");
+            LanguageAPI.Add("EXECUTIONER_UTILITY_SKILLNAME_DESCRIPTION", "Boost forward and fear all enemies.");
+
+            var mySkillDef = ScriptableObject.CreateInstance<SkillDef>();
+            mySkillDef.activationState = new SerializableEntityStateType(typeof(ExampleState));
+            mySkillDef.activationStateMachineName = "Weapon";
+            mySkillDef.baseMaxStock = 1;
+            mySkillDef.baseRechargeInterval = 5f;
+            mySkillDef.beginSkillCooldownOnSkillEnd = false;
+            mySkillDef.canceledFromSprinting = false;
+            mySkillDef.fullRestockOnAssign = true;
+            mySkillDef.interruptPriority = InterruptPriority.Any;
+            mySkillDef.isBullets = false;
+            mySkillDef.isCombatSkill = false;
+            mySkillDef.mustKeyPress = false;
+            mySkillDef.noSprint = true;
+            mySkillDef.rechargeStock = 0;
+            mySkillDef.requiredStock = 1;
+            mySkillDef.shootDelay = 0f;
+            mySkillDef.stockToConsume = 1;
+            mySkillDef.icon = Resources.Load<Sprite>("");
+            mySkillDef.skillDescriptionToken = "EXECUTIONER_UTILITY_SKILLNAME_DESCRIPTION";
+            mySkillDef.skillName = "EXECUTIONER_UTILITY_SKILLNAME_NAME";
+            mySkillDef.skillNameToken = "EXECUTIONER_UTILITY_SKILLNAME_NAME";
+
+            LoadoutAPI.AddSkillDef(mySkillDef);
+
+            skillLocator.utility = characterPrefab.AddComponent<GenericSkill>();
+
+            SkillFamily newFamily = ScriptableObject.CreateInstance<SkillFamily>();
+            newFamily.variants = new SkillFamily.Variant[1];
+            LoadoutAPI.AddSkillFamily(newFamily);
+
+            skillLocator.utility.SetFieldValue("_skillFamily", newFamily);
+            SkillFamily skillFamilyVariants = skillLocator.utility.skillFamily;
+
+            skillFamilyVariants.variants[0] = new SkillFamily.Variant
+            {
+                skillDef = mySkillDef,
+                unlockableName = "",
+                viewableNode = new ViewablesCatalog.Node(mySkillDef.skillNameToken, false, null)
+            };
+        }
+
+        private void SpecialSetup(SkillLocator skillLocator)
+        {
+            LanguageAPI.Add("EXECUTIONER_SPECIAL_SKILLNAME_NAME", "Execution");
+            LanguageAPI.Add("EXECUTIONER_SPECIAL_SKILLNAME_DESCRIPTION", "Slam your axe, dealing varying damage depending on how many targets you hit, single targets take more damage. Killing an enemy with Execution fears nearby enemies.");
+
+            var mySkillDef = ScriptableObject.CreateInstance<SkillDef>();
+            mySkillDef.activationState = new SerializableEntityStateType(typeof(ExampleState));
+            mySkillDef.activationStateMachineName = "Weapon";
+            mySkillDef.baseMaxStock = 1;
+            mySkillDef.baseRechargeInterval = 5f;
+            mySkillDef.beginSkillCooldownOnSkillEnd = false;
+            mySkillDef.canceledFromSprinting = false;
+            mySkillDef.fullRestockOnAssign = true;
+            mySkillDef.interruptPriority = InterruptPriority.Any;
+            mySkillDef.isBullets = false;
+            mySkillDef.isCombatSkill = false;
+            mySkillDef.mustKeyPress = false;
+            mySkillDef.noSprint = true;
+            mySkillDef.rechargeStock = 0;
+            mySkillDef.requiredStock = 1;
+            mySkillDef.shootDelay = 0f;
+            mySkillDef.stockToConsume = 1;
+            mySkillDef.icon = Resources.Load<Sprite>("");
+            mySkillDef.skillDescriptionToken = "EXECUTIONER_SPECIAL_SKILLNAME_DESCRIPTION";
+            mySkillDef.skillName = "EXECUTIONER_SPECIAL_SKILLNAME_NAME";
+            mySkillDef.skillNameToken = "EXECUTIONER_SPECIAL_SKILLNAME_NAME";
+
+            LoadoutAPI.AddSkillDef(mySkillDef);
+
+            skillLocator.special = characterPrefab.AddComponent<GenericSkill>();
+
+            SkillFamily newFamily = ScriptableObject.CreateInstance<SkillFamily>();
+            newFamily.variants = new SkillFamily.Variant[1];
+            LoadoutAPI.AddSkillFamily(newFamily);
+
+            skillLocator.special.SetFieldValue("_skillFamily", newFamily);
+            SkillFamily skillFamilyVariants = skillLocator.special.skillFamily;
+
+            skillFamilyVariants.variants[0] = new SkillFamily.Variant
             {
                 skillDef = mySkillDef,
                 unlockableName = "",
