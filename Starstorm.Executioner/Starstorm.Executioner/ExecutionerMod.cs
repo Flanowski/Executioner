@@ -138,7 +138,6 @@ namespace Executioner
                 skillDef = mySkillDef,
                 unlockableName = "",
                 viewableNode = new ViewablesCatalog.Node(mySkillDef.skillNameToken, false, null)
-                //Hi
             };
         }
     }
